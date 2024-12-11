@@ -1,0 +1,223 @@
+IMPLEMENTATION OF PAGE REPLACEMENT ALGORITHMS
+-Tanisha Dey 1RV23IS130
+1.Introduction
+In operating systems, memory management plays a crucial role in managing and optimizing the utilization of system resources. One of the primary components of memory management is Page Replacement. Page replacement algorithms decide which pages should be swapped in and out of memory. The primary goal is to minimize page faults while efficiently utilizing the limited memory space. 
+This project aims to implement and simulate 3 common page replacement algorithms: First-In-First-Out (FIFO), Least Recently Used (LRU) and Optimal. The objective is to observe the behavior of these algorithms when given a sequence of page references and determine the number of page faults for each algorithm.
+We explore three common page replacement algorithms:
+First-In-First-Out (FIFO)
+Least Recently Used (LRU)
+Optimal Page Replacement
+Page Fault:It occurs when the system tries to access a page that is not currently in memory. The required page is loaded from disk into main memory. If the memory is full, a page replacement algorithm is used to swap an existing page to make room for the new one.
+Page Hit: A page hit occurs when the requested page is already present in memory, no page replacement is needed.
+2. Methodology
+The page replacement algorithms were implemented using the Streamlit framework to allow interactive visualization. The steps followed for each algorithm are outlined below:
+FIFO (First-In-First-Out):
+This algorithm replaces the page that has been in memory the longest. It maintains a simple queue of pages in memory, and when a new page needs to be loaded, the page at the front of the queue is replaced.
+LRU (Least Recently Used):
+The LRU algorithm replaces the page that has not been used for the longest time. It keeps track of the order in which pages were last accessed and evicts the least recently accessed page.
+Optimal Page Replacement:
+The optimal algorithm replaces the page that will not be used for the longest period in the future. It is a theoretical algorithm because it requires knowledge of future page requests, but it serves as a benchmark for comparing the performance of other algorithms.
+Implementation Details:
+A Streamlit web interface was used to allow the user to input parameters like the number of pages, frames, and the page reference sequence.
+The algorithms were implemented in Python, and their results were displayed in a table format using Pandas DataFrames. The table shows the sequence of pages, the state of each frame (whether it contains a page or is empty), and the status of each page (hit or page fault).
+User Input:
+Number of Pages: The total number of page references in the input sequence.
+Number of Frames: The number of pages that can be held in memory at any given time.
+Page Reference Sequence: A comma-separated list representing the sequence of page accesses.
+After receiving the input, the program runs the selected algorithm and displays the page reference sequence, the frame content after each reference and whether each reference was a "Hit" or "Page Fault."
+3. Results
+The results of running the algorithms are displayed in a table where each row corresponds to a page reference, and each column corresponds to the state of a particular frame. The status of each page is also shown as "Hit" or "Page Fault" to indicate whether the requested page was already in memory or had to be loaded into one of the frames.
+Sample Results:
+For example, when the page reference sequence 7,0,1,2,0,3,0,4,2,3 is used with 3 frames, the results for each algorithm may look as follows:
+FIFO Results:
+Page
+Frame 1
+Frame 2
+Frame 3
+Status
+7
+7
+
+
+
+
+Page Fault
+0
+7
+0
+
+
+Page Fault
+1
+7
+0
+1
+Page Fault
+2
+2
+0
+1
+Page Fault
+0
+2
+0
+1
+Hit
+3
+2
+3
+1
+Page Fault
+0
+2
+3
+0
+Page Fault
+4
+4
+3
+0
+Page Fault
+2
+4
+2
+0
+Page Fault
+3
+4
+2
+3
+Hit
+
+LRU Results:
+Page
+Frame 1
+Frame 2
+Frame 3
+Status
+7
+7
+
+
+
+
+Page Fault
+0
+7
+0
+
+
+Page Fault
+1
+7
+0
+1
+Page Fault
+2
+2
+0
+1
+Page Fault
+0
+2
+0
+1
+Hit
+3
+2
+0
+3
+Page Fault
+0
+0
+2
+3
+Hit
+4
+4
+2
+3
+Page Fault
+2
+4
+2
+3
+Hit
+3
+4
+2
+3
+Hit
+
+
+Optimal Results:
+Page
+Frame 1
+Frame 2
+Frame 3
+Status
+7
+7
+
+
+
+
+Page Fault
+0
+7
+0
+
+
+Page Fault
+1
+7
+0
+1
+Page Fault
+2
+7
+0
+2
+Page Fault
+0
+7
+0
+2
+Hit
+3
+3
+0
+2
+Page Fault
+0
+3
+0
+2
+Hit
+4
+3
+0
+4
+Page Fault
+2
+3
+2
+4
+Page Fault
+3
+3
+2
+4
+Hit
+
+Total Page Faults:
+FIFO: 7 page faults
+LRU: 7 page faults
+Optimal: 5 page faults
+4. Conclusion
+FIFO and LRU algorithms have similar performance in terms of page faults for the given input sequence, but both are inefficient compared to the Optimal algorithm.
+The Optimal algorithm resulted in the fewest page faults, as expected, since it knows the future access pattern and replaces the pages that will be used farthest in the future.
+However, the Optimal algorithm is not practical in real-world scenarios because it requires future knowledge of page accesses. LRU and FIFO, though not as optimal, are widely used due to their simplicity and ease of implementation.
+
+
+
